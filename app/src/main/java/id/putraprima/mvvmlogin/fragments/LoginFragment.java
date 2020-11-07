@@ -2,13 +2,20 @@ package id.putraprima.mvvmlogin.fragments;
 
 import android.os.Bundle;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import id.putraprima.mvvmlogin.R;
+import id.putraprima.mvvmlogin.databinding.FragmentLoginBinding;
+import id.putraprima.mvvmlogin.models.User;
+import id.putraprima.mvvmlogin.viewmodels.LoginFragmentViewModel;
+import id.putraprima.mvvmlogin.viewmodels.LoginFragmentViewModelFactory;
 
 public class LoginFragment extends Fragment {
     public LoginFragment() {
@@ -20,6 +27,24 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        FragmentLoginBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
+        LoginFragmentViewModelFactory viewModelFactory = new LoginFragmentViewModelFactory(new User("kliviayurike@gmail.com4@gmail.com", "livia"));
+        LoginFragmentViewModel viewModel = new ViewModelProvider(this, viewModelFactory).get(LoginFragmentViewModel.class);
+        binding.setLoginViewModel(viewModel);
+        binding.setLifecycleOwner(this);
+        View view = binding.getRoot();
+
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewModel.login()){
+                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
+                } else {
+                    binding.editTextEmail.setError("Email Tidak Sesuai dengan initial value");
+                    binding.editTextPassword.setError("Password tidak sesuai dengan initial value");
+                }
+            }
+        });
+        return view;
     }
 }
