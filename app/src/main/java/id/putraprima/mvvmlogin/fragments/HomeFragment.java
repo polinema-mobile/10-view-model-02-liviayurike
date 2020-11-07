@@ -23,8 +23,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
-        View view = binding.getRoot();
-        binding.setLifecycleOwner(this);
-        return view;
+        binding.textView.setText(getArguments().getString("email"));
+        return binding.getRoot();
     }
 }

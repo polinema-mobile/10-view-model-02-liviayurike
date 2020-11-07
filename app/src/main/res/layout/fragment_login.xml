@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="loginViewModel"
+            name="logins"
             type="id.putraprima.mvvmlogin.viewmodels.LoginFragmentViewModel" />
     </data>
 
@@ -22,6 +22,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="32dp"
+            android:onClick="@{()->logins.doLogin()}"
             android:text="Login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +36,8 @@
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="Email"
-            android:text="@={loginViewModel.username}"
+            android:text="@={logins.login.email}"
+            app:error="@{logins.errorUsername}"
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +51,8 @@
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="Password"
-            android:text="@={loginViewModel.password}"
+            android:text="@={logins.login.password}"
+            app:error="@{logins.errorPass}"
             android:inputType="textPassword"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"

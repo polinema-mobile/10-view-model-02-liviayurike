@@ -1,14 +1,24 @@
 package id.putraprima.mvvmlogin.models;
 
-public class User {
-    private String username, password;
+import android.util.Patterns;
 
-    public String getUsername() {
-        return username;
+public class User {
+    public String email, password;
+
+    public User() {
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -19,11 +29,7 @@ public class User {
         this.password = password;
     }
 
-    public User() {
-    }
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public boolean isEmailValid() {
+        return Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches();
     }
 }
