@@ -6,10 +6,10 @@ TI 3F:
 
 ## Hasil
 ### SplashScreen
-![fitur1](assets/1.jpg)
+![fitur1](assets/1.jpeg)
 
 ### Login
-![fitur2](assets/2.jpg)  
+![fitur2](assets/2.jpeg)  
 
 ### Home
-![fitur3](assets/3.jpg)
+![fitur3](assets/3.jpeg)
